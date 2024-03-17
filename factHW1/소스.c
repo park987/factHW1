@@ -45,14 +45,6 @@ int main() {
 		addWord(length, inputStr, i, &group_count, &groupArr);
 	}
 
-	for (i = 0; i < group_count; i++) {
-		printf("%d-letter words: ", groupArr[i].len);
-		for (int j = 0; j < groupArr[i].count; j++) {
-			printf("%s ", groupArr[i].word[j]);
-		}
-		printf("\n");
-	}
-
 	for (int i = 0; i < group_count; i++) {
 		char* tempStr = (char*)malloc(sizeof(char) * (groupArr[i].len + 1));
 
@@ -82,8 +74,8 @@ int main() {
 	}
 
 	Group* temp;
-	for (int i = 0; i < group_count - 1; i++) {
-		for (int j = 1; j < group_count; j++) {
+	for (int i = 0; i < group_count; i++) {
+		for (int j = i; j < group_count; j++) {
 			if (group_address_sort[i][0].len > group_address_sort[j][0].len) {
 				temp = group_address_sort[i];
 				group_address_sort[i] = group_address_sort[j];
@@ -116,13 +108,12 @@ void addWord(int length, char* inputStr, int i, int* group_count, Group** groupA
 
 			//그룹에 속하는 단어 배열 개수 늘리기
 			(*groupArr)[k].word = realloc((*groupArr)[k].word, sizeof(char*) * (*groupArr)[k].count);
-			for (int a = 0; a < (*groupArr)[k].count; a++) {
-				(*groupArr)[k].word[a] = realloc((*groupArr)[k].word[a], sizeof(char) * (length + 1));
-			}
+			(*groupArr)[k].word[(*groupArr)[k].count - 1] = (char*)malloc(sizeof(char) * (length + 1));
+			
 
-			strcpy(((*groupArr) + k)->word[(*groupArr)[k].count], tempStr);
+			strcpy(((*groupArr) + k)->word[(*groupArr)[k].count - 1], tempStr);
 			// (*groupArr)[k].word[(*groupArr)[k].count]
-			printf("추가됨: %s\n", (*groupArr)[k].word[(*groupArr)[k].count] + (length + 1));
+			//printf("추가됨: %s\n", (*groupArr)[k].word[(*groupArr)[k].count - 1]);
 			flag = 1;
 			break;
 		}
@@ -139,7 +130,7 @@ void addWord(int length, char* inputStr, int i, int* group_count, Group** groupA
 
 		strcpy(((*groupArr) + k)->word[0], tempStr);
 
-		printf("추가됨: %s\n", ((*groupArr) + k)->word[0]);
+		//printf("추가됨: %s\n", ((*groupArr) + k)->word[0]);
 	}
 
 	free(tempStr);
