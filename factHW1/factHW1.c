@@ -52,6 +52,9 @@ int main() {
 		}
 		printf("\n");
 	}
+
+
+
 }
 
 void makeGroup(Group* group, int length) {  //그룹 생성

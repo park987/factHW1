@@ -18,5 +18,8 @@
     <ClCompile Include="factHW1.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="정렬.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
