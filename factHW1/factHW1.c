@@ -60,19 +60,17 @@ void makeGroup(Group* group, int length) {  //그룹 생성
 		
 	/*group->word = (char**)malloc(sizeof(char*) * 1);
 	group->word[0] = (char*)malloc(sizeof(char) * (length + 1));*/
+
 	group->word = (char**)malloc(sizeof(char*) * group->count);
-	if (group->word == NULL) {
-		// 메모리 할당에 실패한 경우 에러 메시지를 출력하고 종료합니다.
-		perror("Memory allocation failed");
+	if (group->word == NULL) {  //메모리 할당 실패
+		perror("Mem err");
 		exit(EXIT_FAILURE);
 	}
 
-	// 각 단어에 대해 메모리를 할당합니다.
 	for (int i = 0; i < group->count; ++i) {
 		group->word[i] = (char*)malloc(sizeof(char) * (length + 1));
-		if (group->word[i] == NULL) {
-			// 메모리 할당에 실패한 경우 에러 메시지를 출력하고 종료합니다.
-			perror("Memory allocation failed");
+		if (group->word[i] == NULL) {   //메모리 할당 실패2
+			perror("Mem err2");
 			exit(EXIT_FAILURE);
 		}
 	}
